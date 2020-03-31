@@ -1,6 +1,11 @@
 from display import *
 from matrix import *
 from draw import *
+from collections import deque
+import copy
+
+stack = deque ()
+stack.push (ident (new_matrix ()))
 
 """
 Goes through the file named filename and performs all of the actions listed in that file.
@@ -142,6 +147,13 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
         elif line == 'clear':
             edges = []
             polygons = []
+
+        elif line == 'push':
+            c = copy.deepcopy (csystems)
+            stack.push (c)
+
+        elif line == 'pop':
+            stack.pop ()
 
         elif line == 'display' or line == 'save':
             clear_screen(screen)
