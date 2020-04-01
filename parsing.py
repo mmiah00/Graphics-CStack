@@ -112,6 +112,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             csystems = stack.top ()
             matrix_mult (csystems, edges)
             draw_lines (edges, screen, color)
+            edges = []
 
         elif line == 'hermite' or line == 'bezier':
             #print 'curve\t' + line + ": " + str(args)
@@ -124,6 +125,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             csystems = stack.top ()
             matrix_mult (csystems, edges)
             draw_lines (edges, screen, color)
+            edges = []
 
         elif line == 'line':
             #print 'LINE\t' + str(args)
@@ -134,6 +136,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             csystems = stack.top ()
             matrix_mult (csystems, edges)
             draw_lines (edges, screen, color)
+            edges = []
 
         elif line == 'scale':
             #print 'SCALE\t' + str(args)
