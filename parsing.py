@@ -1,10 +1,7 @@
 from display import *
 from matrix import *
 from draw import *
-from mystack import *
 import copy
-
-stack = MyStack ()
 
 """
 Goes through the file named filename and performs all of the actions listed in that file.
@@ -79,9 +76,9 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             add_sphere(polygons,
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), step_3d)
-            csystems = stack.top ()
-            matrix_mult (csystems, polygons)
-            draw_polygons (polygons, scren, color )
+            top = csystems[-1]
+            matrix_mult (top, polygons)
+            draw_polygons (polygons, screen, color )
             polygons = []
 
         elif line == 'torus':
@@ -89,9 +86,9 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             add_torus(polygons,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), step_3d)
-            csystems = stack.top ()
-            matrix_mult (csystems, polygons)
-            draw_polygons (polygons, scren, color )
+            top = csystems[-1]
+            matrix_mult (top, polygons)
+            draw_polygons (polygons, screen, color )
             polygons = []
 
         elif line == 'box':
@@ -99,9 +96,9 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             add_box(polygons,
                     float(args[0]), float(args[1]), float(args[2]),
                     float(args[3]), float(args[4]), float(args[5]))
-            csystems = stack.top ()
-            matrix_mult (csystems, polygons)
-            draw_polygons (polygons, scren, color )
+            top = csystems[-1]
+            matrix_mult (top, polygons)
+            draw_polygons (polygons, screen, color )
             polygons = []
 
         elif line == 'circle':
@@ -109,8 +106,8 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             add_circle(edges,
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), step)
-            csystems = stack.top ()
-            matrix_mult (csystems, edges)
+            top = csystems[-1]
+            matrix_mult (top, edges)
             draw_lines (edges, screen, color)
             edges = []
 
@@ -122,8 +119,8 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
                       float(args[4]), float(args[5]),
                       float(args[6]), float(args[7]),
                       step, line)
-            csystems = stack.top ()
-            matrix_mult (csystems, edges)
+            top = csystems[-1]
+            matrix_mult (top, edges)
             draw_lines (edges, screen, color)
             edges = []
 
@@ -133,55 +130,43 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             add_edge( edges,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), float(args[5]) )
-            csystems = stack.top ()
-            matrix_mult (csystems, edges)
+            top = csystems[-1]
+            matrix_mult (top, edges)
             draw_lines (edges, screen, color)
             edges = []
 
         elif line == 'scale':
             #print 'SCALE\t' + str(args)
             t = make_scale(float(args[0]), float(args[1]), float(args[2]))
-            csystems = stack.top ()
-            matrix_mult (csystems, t)
+            top = csystems [-1]
+            matrix_mult (top, t)
 
         elif line == 'move':
             #print 'MOVE\t' + str(args)
             t = make_translate(float(args[0]), float(args[1]), float(args[2]))
-            csystems = stack.top ()
-            matrix_mult (csystems, t)
+            top = csystems[-1]
+            matrix_mult (top, t)
             print ("Moved!")
 
         elif line == 'rotate':
             #print 'ROTATE\t' + str(args)
             theta = float(args[1]) * (math.pi / 180)
-            csystems = stack.top ()
+            top = csystems[-1]
             if args[0] == 'x':
                 t = make_rotX(theta)
             elif args[0] == 'y':
                 t = make_rotY(theta)
             else:
                 t = make_rotZ(theta)
-            matrix_mult (csystems, t)
+            matrix_mult (top, t)
 
         elif line == 'push':
-            copee = copy.deepcopy (csystems)
-            stack.push (copee)
+            csystems.append(csystems[-1])
             print ("Pushed!")
 
         elif line == 'pop':
-            stack.pop ()
+            csystems.pop ()
             print ("Popped!")
-
-        # elif line == 'ident':
-        #     ident(transform)
-        #
-        # elif line == 'apply':
-        #     matrix_mult( transform, edges )
-        #     matrix_mult( transform, polygons )
-        #
-        # elif line == 'clear':
-        #     edges = []
-        #     polygons = []
 
         elif line == 'display' or line == 'save':
             clear_screen(screen)
