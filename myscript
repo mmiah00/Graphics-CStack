@@ -1,52 +1,112 @@
 push
 move
-250 50 0
+250 250 0
 rotate
 y -45
 rotate
 z 30
-torus
-0 0 0 2 10
+sphere
+0 0 0 100
 push
 move
-0 4 0
+0 -50 0
 torus
-0 0 0 2 15
+0 0 0 5 100
 push
 move
-0 4 0
+0 -10 0
 torus
-0 0 0 2 20
+0 0 0 5 95
 push
 move
-0 4 0
+0 -10 0
 torus
-0 0 0 2 25
+0 0 0 5 90
 push
 move
-0 4 0
+0 -10 0
 torus
-0 0 0 2 30
+0 0 0 5 85
 push
 move
-0 4 0
+0 -10 0
 torus
-0 0 0 2 35
+0 0 0 5 80
 push
 move
-0 4 0
+0 -10 0
 torus
-0 0 0 2 40
+0 0 0 5 75
 push
 move
-0 4 0
+0 -10 0
 torus
-0 0 0 2 45
+0 0 0 5 70
 push
 move
-0 4 0
+0 -10 0
 torus
-0 0 0 2 50
+0 0 0 5 65
+push
+move
+0 -10 0
+torus
+0 0 0 5 60
+push
+move
+0 -10 0
+torus
+0 0 0 5 55
+push
+move
+0 -10 0
+torus
+0 0 0 5 50
+push
+move
+0 -10 0
+torus
+0 0 0 5 45
+push
+move
+0 -10 0
+torus
+0 0 0 5 40
+push
+move
+0 -10 0
+torus
+0 0 0 5 35
+push
+move
+0 -10 0
+torus
+0 0 0 5 30
+push
+move
+0 -10 0
+torus
+0 0 0 5 25
+push
+move
+0 -10 0
+torus
+0 0 0 5 20
+push
+move
+0 -10 0
+torus
+0 0 0 5 15
+push
+move
+0 -10 0
+torus
+0 0 0 5 10
+push
+move
+0 -10 0
+torus
+0 0 0 5 5
 display
 save
 speaker.png
