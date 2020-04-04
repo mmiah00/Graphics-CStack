@@ -78,9 +78,8 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
                        float(args[3]), step_3d)
             top = csystems[-1]
             matrix_mult (top, polygons)
-            draw_polygons (polygons, screen, color )
+            draw_polygons (polygons, screen, color)#[245,255,250] )
             polygons = []
-            print ("Sphere added!")
 
         elif line == 'torus':
             #print 'TORUS\t' + str(args)
@@ -89,9 +88,8 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
                       float(args[3]), float(args[4]), step_3d)
             top = csystems[-1]
             matrix_mult (top, polygons)
-            draw_polygons (polygons, screen, color )
+            draw_polygons (polygons, screen, color)#[222,184,135] )
             polygons = []
-            print ("Torus added!")
 
         elif line == 'box':
             #print 'BOX\t' + str(args)
@@ -102,7 +100,6 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             matrix_mult (top, polygons)
             draw_polygons (polygons, screen, color )
             polygons = []
-            print ("Box added!")
 
         elif line == 'circle':
             #print 'CIRCLE\t' + str(args)
@@ -113,7 +110,6 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             matrix_mult (top, edges)
             draw_lines (edges, screen, color)
             edges = []
-            print ("Circle Added!")
 
         elif line == 'hermite' or line == 'bezier':
             #print 'curve\t' + line + ": " + str(args)
@@ -127,7 +123,6 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             matrix_mult (top, edges)
             draw_lines (edges, screen, color)
             edges = []
-            print ("Curve Added!")
 
         elif line == 'line':
             #print 'LINE\t' + str(args)
@@ -139,7 +134,6 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             matrix_mult (top, edges)
             draw_lines (edges, screen, color)
             edges = []
-            print ("Line Added!")
 
         elif line == 'scale':
             #print 'SCALE\t' + str(args)
@@ -148,7 +142,6 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             matrix_mult (top, t)
             csystems.pop()
             csystems.append(t)
-            print ("Scaled!")
 
         elif line == 'move':
             #print 'MOVE\t' + str(args)
@@ -157,7 +150,6 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             matrix_mult (top, t)
             csystems.pop()
             csystems.append(t)
-            print ("Moved!")
 
         elif line == 'rotate':
             #print 'ROTATE\t' + str(args)
@@ -172,15 +164,12 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             matrix_mult (top, t)
             csystems.pop()
             csystems.append(t)
-            print ("Rotated!")
 
         elif line == 'push':
             csystems.append(csystems[-1])
-            print ("Pushed!")
 
         elif line == 'pop':
             csystems.pop ()
-            print ("Popped!")
 
         elif line == 'display' or line == 'save':
             if line == 'display':
